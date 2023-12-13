@@ -1,26 +1,30 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { DataTable } from './components/data-table'
+import { UserNav } from './components/user-nav'
+import { ChakraProvider } from '@chakra-ui/react'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <ChakraProvider>
+      <div className=''>
+        <div className='flex h-full flex-1 flex-col space-y-8 p-8 md:flex'>
+          <div className='flex items-center justify-between space-y-2'>
+            <div>
+              <h2 className='text-2xl font-bold tracking-tight'>
+                Welcome back!
+              </h2>
+              <p className='text-muted-foreground'>
+                Here&apos;s a list of lawyers that are available for you!
+              </p>
+            </div>
+            <div className='flex items-center space-x-2'>
+              <UserNav />
+            </div>
+          </div>
+          <DataTable />
+        </div>
+      </div>
+    </ChakraProvider>
+  )
 }
 
-export default App;
+export default App

@@ -1,0 +1,64 @@
+{
+  "lawyers": [
+    {
+      "id": 1,
+      "name": "John Doe",
+      "speciality": "Criminal Defense",
+      "firms": ["Law Firm A", "Law Firm B"],
+      "address": "123 Main Street, Cityville",
+      "phone": "555-1234",
+      "availableTime": {
+        "from": "Mon 10:00 AM",
+        "to": "Wed 1:00 PM"
+      }
+    },
+    {
+      "id": 2,
+      "name": "Jane Smith",
+      "speciality": "Family Law",
+      "firms": ["Law Firm C"],
+      "address": "456 Oak Avenue, Townsville",
+      "phone": "555-5678",
+      "availableTime": {
+        "from": "Tue 9:00 AM",
+        "to": "Thu 6:00 PM"
+      }
+    },
+    {
+      "id": 3,
+      "name": "Robert Johnson",
+      "speciality": "Personal Injury",
+      "firms": ["Law Firm B", "Law Firm D"],
+      "address": "789 Pine Road, Villagetown",
+      "phone": "555-9012",
+      "availableTime": {
+        "from": "Mon 1:00 PM",
+        "to": "Fri 1:00 PM"
+      }
+    },
+    {
+      "id": 4,
+      "name": "Alice Anderson",
+      "speciality": "Real Estate Law",
+      "firms": ["Law Firm E", "Law Firm F"],
+      "address": "101 Elm Street, Suburbia",
+      "phone": "555-3456",
+      "availableTime": {
+        "from": "Wed 9:00 AM",
+        "to": "Thu 5:00 PM"
+      }
+    },
+    {
+      "id": 5,
+      "name": "Michael Miller",
+      "speciality": "Immigration Law",
+      "firms": ["Law Firm G"],
+      "address": "202 Maple Avenue, Downtown",
+      "phone": "555-6789",
+      "availableTime": {
+        "from": "Mon 2:00 PM",
+        "to": "Fri 4:00 PM"
+      }
+    }
+  ]
+}

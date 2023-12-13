@@ -1,0 +1,49 @@
+import { CalendarIcon } from 'lucide-react'
+import { Button } from './ui/button'
+import { cn } from '../lib/utils'
+
+export function Date1({
+  date
+}: {
+  date:
+    | {
+        from: string
+        to: string
+      }
+    | undefined
+}) {
+  function formatDateTime(inputStr: string, locale: string = 'en-US'): string {
+    const dateObject = new Date(inputStr)
+    const options: Intl.DateTimeFormatOptions = {
+      weekday: 'short',
+      hour: 'numeric',
+      minute: 'numeric',
+      hour12: true
+    }
+    const formattedStr = dateObject.toLocaleString('en-IN', options)
+
+    return formattedStr
+  }
+  return (
+    <div
+      id='date1'
+      className={cn(
+        'w-fit justify-start text-left text-xs flex rounded-md gap-2 font-medium items-center',
+        !date && 'text-muted-foreground'
+      )}
+    >
+      <CalendarIcon size={19} />
+      {date?.from ? (
+        date.to ? (
+          <>
+            {date.from} - {date.to}
+          </>
+        ) : (
+          date.from
+        )
+      ) : (
+        <span>Pick a date</span>
+      )}
+    </div>
+  )
+}
