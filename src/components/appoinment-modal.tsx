@@ -15,6 +15,7 @@ import { useToast } from '@chakra-ui/react'
 import { useDispatch, useSelector } from 'react-redux'
 import { bookAppointment } from '../stores/appoinment-reducer'
 import { RootState } from '../stores/store'
+import { isDoctorAvailable } from '../lib/helpers'
 
 const AppoinmentModal = ({ lawyer }: { lawyer: Lawyers | undefined }) => {
   const [firstName, setFirstname] = useState<string | undefined>()
@@ -48,6 +49,27 @@ const AppoinmentModal = ({ lawyer }: { lawyer: Lawyers | undefined }) => {
       return
     }
 
+    if (!lawyer) {
+      return
+    }
+
+    if (
+      !isDoctorAvailable(
+        appoinmentDateTime,
+        lawyer?.availableTime.from,
+        lawyer?.availableTime.to
+      )
+    ) {
+      toast({
+        title: 'Lawyer Unavailable',
+        description: 'Please choose another time.',
+        status: 'error',
+        duration: 900,
+        position: 'top'
+      })
+      return
+    }
+
     if (!isTimeSlotAvailable(appoinmentDateTime)) {
       toast({
         title: 'Appointment Overlap',
@@ -57,10 +79,6 @@ const AppoinmentModal = ({ lawyer }: { lawyer: Lawyers | undefined }) => {
         duration: 900,
         position: 'top'
       })
-      return
-    }
-
-    if (!lawyer) {
       return
     }
 

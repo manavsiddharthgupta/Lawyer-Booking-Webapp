@@ -50,8 +50,8 @@ const data: Lawyers[] = [
     address: '123 Main Street, Cityville',
     phone: '555-1234',
     availableTime: {
-      from: 'Mon 10:00 AM',
-      to: 'Wed 1:00 PM'
+      from: '10:00 AM',
+      to: '1:00 PM'
     }
   },
   {
@@ -62,8 +62,8 @@ const data: Lawyers[] = [
     address: '456 Oak Avenue, Townsville',
     phone: '555-5678',
     availableTime: {
-      from: 'Tue 9:00 AM',
-      to: 'Thu 6:00 PM'
+      from: '9:00 AM',
+      to: '6:00 PM'
     }
   },
   {
@@ -74,8 +74,8 @@ const data: Lawyers[] = [
     address: '789 Pine Road, Villagetown',
     phone: '555-9012',
     availableTime: {
-      from: 'Mon 1:00 PM',
-      to: 'Fri 1:00 PM'
+      from: '10:00 AM',
+      to: '9:00 PM'
     }
   },
   {
@@ -86,8 +86,8 @@ const data: Lawyers[] = [
     address: '101 Elm Street, Suburbia',
     phone: '555-3456',
     availableTime: {
-      from: 'Wed 9:00 AM',
-      to: 'Thu 5:00 PM'
+      from: '9:00 AM',
+      to: '5:00 PM'
     }
   },
   {
@@ -98,8 +98,8 @@ const data: Lawyers[] = [
     address: '202 Maple Avenue, Downtown',
     phone: '555-6789',
     availableTime: {
-      from: 'Mon 2:00 PM',
-      to: 'Fri 4:00 PM'
+      from: '2:00 PM',
+      to: '4:00 PM'
     }
   },
   {
@@ -110,8 +110,8 @@ const data: Lawyers[] = [
     address: '303 Cedar Lane, Tech City',
     phone: '555-1122',
     availableTime: {
-      from: 'Tue 10:30 AM',
-      to: 'Thu 3:00 PM'
+      from: '10:30 AM',
+      to: '3:00 PM'
     }
   },
   {
@@ -122,8 +122,8 @@ const data: Lawyers[] = [
     address: '404 Birch Boulevard, Business City',
     phone: '555-3344',
     availableTime: {
-      from: 'Mon 12:00 PM', // Mon 12:00 PM
-      to: 'Fri 5:00 PM'
+      from: '12:00 PM', // Mon 12:00 PM
+      to: '5:00 PM'
     }
   },
   {
@@ -134,8 +134,8 @@ const data: Lawyers[] = [
     address: '505 Pine Lane, Financeville',
     phone: '555-5566',
     availableTime: {
-      from: 'Wed 11:00 AM',
-      to: 'Fri 6:00 PM'
+      from: '11:00 AM',
+      to: '6:00 PM'
     }
   },
   {
@@ -146,8 +146,8 @@ const data: Lawyers[] = [
     address: '606 Oak Street, Naturetown',
     phone: '555-7788',
     availableTime: {
-      from: 'Tue 1:00 PM',
-      to: 'Fri 6:00 PM'
+      from: '1:00 PM',
+      to: '6:00 PM'
     }
   },
   {
@@ -158,8 +158,8 @@ const data: Lawyers[] = [
     address: '707 Maple Lane, Jobsville',
     phone: '555-9900',
     availableTime: {
-      from: 'Mon 9:00 AM', // Mon 9:00 AM
-      to: 'Fri 6:00 PM'
+      from: '9:00 AM',
+      to: '6:00 PM'
     }
   }
 ]
@@ -230,18 +230,6 @@ export function DataTable() {
       lawyersData.splice(draggedRowIndex, 1)[0] as Lawyers
     )
     setLawyersData([...lawyersData])
-  }
-  function formatDateTime(inputStr: string, locale: string = 'en-US'): string {
-    const dateObject = new Date(inputStr)
-    const options: Intl.DateTimeFormatOptions = {
-      weekday: 'short',
-      hour: 'numeric',
-      minute: 'numeric',
-      hour12: true
-    }
-    const formattedStr = dateObject.toLocaleString('en-IN', options)
-
-    return formattedStr
   }
 
   const columns: ColumnDef<Lawyers>[] = [
@@ -437,16 +425,15 @@ export function DataTable() {
             </TableBody>
           </Table>
         </div>
-        <Dialog
-          open={bookingModal != null}
-          onOpenChange={() => setBookingModal(null)}
-        >
-          <AppoinmentModal
-            lawyer={data.find((each) => {
-              return each.id === bookingModal
-            })}
-          />
-        </Dialog>
+        {bookingModal != null && (
+          <Dialog open={true} onOpenChange={() => setBookingModal(null)}>
+            <AppoinmentModal
+              lawyer={data.find((each) => {
+                return each.id === bookingModal
+              })}
+            />
+          </Dialog>
+        )}
       </div>
     </DndProvider>
   )
