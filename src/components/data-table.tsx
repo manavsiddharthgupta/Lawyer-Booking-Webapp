@@ -14,7 +14,7 @@ import {
   getSortedRowModel,
   useReactTable
 } from '@tanstack/react-table'
-import { ChevronDown, MoreHorizontal } from 'lucide-react'
+import { ChevronDown, Menu, MoreHorizontal } from 'lucide-react'
 import { Button } from './ui/button'
 import {
   DropdownMenu,
@@ -40,6 +40,7 @@ import { DndProvider, useDrag, useDrop } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
 import { Date2 } from './date2'
 import AppoinmentModal from './appoinment-modal'
+import { Badge } from './ui/badge'
 
 const data: Lawyers[] = [
   {
@@ -200,7 +201,9 @@ const DraggableRow = ({
   return (
     <TableRow ref={previewRef} style={{ opacity: isDragging ? 0.5 : 1 }}>
       <TableCell ref={dropRef}>
-        <button ref={dragRef}>🟰</button>
+        <button ref={dragRef}>
+          <Menu size={22} />
+        </button>
       </TableCell>
       {row.getVisibleCells().map((cell) => (
         <TableCell key={cell.id}>
@@ -243,9 +246,7 @@ export function DataTable() {
     {
       accessorKey: 'speciality',
       header: 'Speciality',
-      cell: ({ row }) => (
-        <div className='lowercase'>{row.getValue('speciality')}</div>
-      )
+      cell: ({ row }) => <Badge>{row.getValue('speciality')}</Badge>
     },
     {
       accessorKey: 'firms',
@@ -257,7 +258,7 @@ export function DataTable() {
           <Tooltip label={allfirms.join(', ')}>
             <AvatarGroup size='sm' max={2}>
               {allfirms.map((val: string) => (
-                <Avatar key={val} name={val} src='' />
+                <Avatar backgroundColor='black' key={val} name={val} src='' />
               ))}
             </AvatarGroup>
           </Tooltip>
@@ -286,11 +287,7 @@ export function DataTable() {
       accessorKey: 'address',
       header: () => <div className='text-right'>Address</div>,
       cell: ({ row }) => {
-        return (
-          <div className='text-right font-medium'>
-            {row.getValue('address')}
-          </div>
-        )
+        return <div className='text-right'>{row.getValue('address')}</div>
       }
     },
     {
