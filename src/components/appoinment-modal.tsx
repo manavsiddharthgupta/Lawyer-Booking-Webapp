@@ -13,9 +13,9 @@ import { Lawyers } from './data-table'
 import { useState } from 'react'
 import { useToast } from '@chakra-ui/react'
 import { useDispatch, useSelector } from 'react-redux'
-import { bookAppointment } from '../stores/appoinment-reducer'
-import { RootState } from '../stores/store'
+import { AppDispatch, RootState } from '../stores/store'
 import { isDoctorAvailable } from '../lib/helpers'
+import { storeBookingData } from '../stores/appoinment-reducer'
 
 const AppoinmentModal = ({ lawyer }: { lawyer: Lawyers | undefined }) => {
   const [firstName, setFirstname] = useState<string | undefined>()
@@ -25,11 +25,10 @@ const AppoinmentModal = ({ lawyer }: { lawyer: Lawyers | undefined }) => {
   >()
   const [phoneNumber, setPhoneNumber] = useState<number | string | undefined>()
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch<AppDispatch>()
   const toast = useToast()
 
   const bookedAppointments = useSelector((state: RootState) => state.booking)
-  console.log(bookedAppointments)
 
   const onSubmit = () => {
     if (
@@ -83,7 +82,7 @@ const AppoinmentModal = ({ lawyer }: { lawyer: Lawyers | undefined }) => {
     }
 
     dispatch(
-      bookAppointment({
+      storeBookingData({
         lawyerName: lawyer?.name,
         lawyerId: lawyer?.id,
         userFirstName: firstName,
@@ -99,6 +98,7 @@ const AppoinmentModal = ({ lawyer }: { lawyer: Lawyers | undefined }) => {
       duration: 900,
       position: 'top'
     })
+
     setFirstname(undefined)
     setLastName(undefined)
     setAppoinmnetDateTime(undefined)
@@ -107,9 +107,8 @@ const AppoinmentModal = ({ lawyer }: { lawyer: Lawyers | undefined }) => {
 
   const isTimeSlotAvailable = (time: Date | string) => {
     const appointmentTime = new Date(time)
-    // check the appointmentTime matches availability
 
-    return !bookedAppointments.some((appointment) => {
+    return !bookedAppointments.appointment.some((appointment) => {
       const bookedStartTime = new Date(appointment.appointmentTime)
       const bookedEndTime = new Date(bookedStartTime)
       bookedEndTime.setHours(bookedEndTime.getHours() + 1)
@@ -180,7 +179,11 @@ const AppoinmentModal = ({ lawyer }: { lawyer: Lawyers | undefined }) => {
           />
         </div>
       </div>
-      <Button variant='default' onClick={onSubmit}>
+      <Button
+        variant='default'
+        disabled={bookedAppointments.isLoading}
+        onClick={onSubmit}
+      >
         Book Appointment
       </Button>
     </DialogContent>

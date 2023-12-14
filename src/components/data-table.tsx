@@ -123,7 +123,7 @@ const data: Lawyers[] = [
     address: '404 Birch Boulevard, Business City',
     phone: '555-3344',
     availableTime: {
-      from: '12:00 PM', // Mon 12:00 PM
+      from: '12:00 PM',
       to: '5:00 PM'
     }
   },
