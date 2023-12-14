@@ -37,6 +37,10 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
+## Preview
+
+https://github.com/manavsiddharthgupta/legistify-assignment/assets/79929708/30d5bc9d-c6e6-4799-a610-92d1e50faa7b
+
 ## Dependencies
 
 This project relies on the following external packages and libraries:
