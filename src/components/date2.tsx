@@ -10,18 +10,6 @@ export function Date2({
     to: string
   }
 }) {
-  function formatDateTime(inputStr: string, locale: string = 'en-US'): string {
-    const dateObject = new Date(inputStr)
-    const options: Intl.DateTimeFormatOptions = {
-      weekday: 'short',
-      hour: 'numeric',
-      minute: 'numeric',
-      hour12: true
-    }
-    const formattedStr = dateObject.toLocaleString('en-IN', options)
-
-    return formattedStr
-  }
   return (
     <Button
       id='date'

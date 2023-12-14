@@ -8,8 +8,8 @@
       "address": "123 Main Street, Cityville",
       "phone": "555-1234",
       "availableTime": {
-        "from": "Mon 10:00 AM",
-        "to": "Wed 1:00 PM"
+        "from": "10:00 AM",
+        "to": "1:00 PM"
       }
     },
     {
@@ -20,8 +20,8 @@
       "address": "456 Oak Avenue, Townsville",
       "phone": "555-5678",
       "availableTime": {
-        "from": "Tue 9:00 AM",
-        "to": "Thu 6:00 PM"
+        "from": "9:00 AM",
+        "to": "6:00 PM"
       }
     },
     {
@@ -32,8 +32,8 @@
       "address": "789 Pine Road, Villagetown",
       "phone": "555-9012",
       "availableTime": {
-        "from": "Mon 1:00 PM",
-        "to": "Fri 1:00 PM"
+        "from": "10:00 AM",
+        "to": "9:00 PM"
       }
     },
     {
@@ -44,8 +44,8 @@
       "address": "101 Elm Street, Suburbia",
       "phone": "555-3456",
       "availableTime": {
-        "from": "Wed 9:00 AM",
-        "to": "Thu 5:00 PM"
+        "from": "9:00 AM",
+        "to": "5:00 PM"
       }
     },
     {
@@ -56,8 +56,68 @@
       "address": "202 Maple Avenue, Downtown",
       "phone": "555-6789",
       "availableTime": {
-        "from": "Mon 2:00 PM",
-        "to": "Fri 4:00 PM"
+        "from": "2:00 PM",
+        "to": "4:00 PM"
+      }
+    },
+    {
+      "id": 6,
+      "name": "Emily Evans",
+      "speciality": "Intellectual Property",
+      "firms": ["Law Firm H", "Law Firm I"],
+      "address": "303 Cedar Lane, Tech City",
+      "phone": "555-1122",
+      "availableTime": {
+        "from": "10:30 AM",
+        "to": "3:00 PM"
+      }
+    },
+    {
+      "id": 7,
+      "name": "Daniel Davis",
+      "speciality": "Corporate Law",
+      "firms": ["Law Firm J"],
+      "address": "404 Birch Boulevard, Business City",
+      "phone": "555-3344",
+      "availableTime": {
+        "from": "12:00 PM",
+        "to": "5:00 PM"
+      }
+    },
+    {
+      "id": 8,
+      "name": "Sophia Sanchez",
+      "speciality": "Bankruptcy Law",
+      "firms": ["Law Firm K", "Law Firm L"],
+      "address": "505 Pine Lane, Financeville",
+      "phone": "555-5566",
+      "availableTime": {
+        "from": "11:00 AM",
+        "to": "6:00 PM"
+      }
+    },
+    {
+      "id": 9,
+      "name": "William White",
+      "speciality": "Environmental Law",
+      "firms": ["Law Firm M"],
+      "address": "606 Oak Street, Naturetown",
+      "phone": "555-7788",
+      "availableTime": {
+        "from": "1:00 PM",
+        "to": "6:00 PM"
+      }
+    },
+    {
+      "id": 10,
+      "name": "Olivia Oliver",
+      "speciality": "Employment Law",
+      "firms": ["Law Firm N", "Law Firm O"],
+      "address": "707 Maple Lane, Jobsville",
+      "phone": "555-9900",
+      "availableTime": {
+        "from": "9:00 AM",
+        "to": "6:00 PM"
       }
     }
   ]

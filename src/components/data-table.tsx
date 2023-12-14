@@ -66,102 +66,6 @@ const data: Lawyers[] = [
       from: '9:00 AM',
       to: '6:00 PM'
     }
-  },
-  {
-    id: 3,
-    name: 'Robert Johnson',
-    speciality: 'Personal Injury',
-    firms: ['Law Firm B', 'Law Firm D'],
-    address: '789 Pine Road, Villagetown',
-    phone: '555-9012',
-    availableTime: {
-      from: '10:00 AM',
-      to: '9:00 PM'
-    }
-  },
-  {
-    id: 4,
-    name: 'Alice Anderson',
-    speciality: 'Real Estate Law',
-    firms: ['Law Firm E', 'Law Firm F'],
-    address: '101 Elm Street, Suburbia',
-    phone: '555-3456',
-    availableTime: {
-      from: '9:00 AM',
-      to: '5:00 PM'
-    }
-  },
-  {
-    id: 5,
-    name: 'Michael Miller',
-    speciality: 'Immigration Law',
-    firms: ['Law Firm G'],
-    address: '202 Maple Avenue, Downtown',
-    phone: '555-6789',
-    availableTime: {
-      from: '2:00 PM',
-      to: '4:00 PM'
-    }
-  },
-  {
-    id: 6,
-    name: 'Emily Evans',
-    speciality: 'Intellectual Property',
-    firms: ['Law Firm H', 'Law Firm I'],
-    address: '303 Cedar Lane, Tech City',
-    phone: '555-1122',
-    availableTime: {
-      from: '10:30 AM',
-      to: '3:00 PM'
-    }
-  },
-  {
-    id: 7,
-    name: 'Daniel Davis',
-    speciality: 'Corporate Law',
-    firms: ['Law Firm J'],
-    address: '404 Birch Boulevard, Business City',
-    phone: '555-3344',
-    availableTime: {
-      from: '12:00 PM',
-      to: '5:00 PM'
-    }
-  },
-  {
-    id: 8,
-    name: 'Sophia Sanchez',
-    speciality: 'Bankruptcy Law',
-    firms: ['Law Firm K', 'Law Firm L'],
-    address: '505 Pine Lane, Financeville',
-    phone: '555-5566',
-    availableTime: {
-      from: '11:00 AM',
-      to: '6:00 PM'
-    }
-  },
-  {
-    id: 9,
-    name: 'William White',
-    speciality: 'Environmental Law',
-    firms: ['Law Firm M'],
-    address: '606 Oak Street, Naturetown',
-    phone: '555-7788',
-    availableTime: {
-      from: '1:00 PM',
-      to: '6:00 PM'
-    }
-  },
-  {
-    id: 10,
-    name: 'Olivia Oliver',
-    speciality: 'Employment Law',
-    firms: ['Law Firm N', 'Law Firm O'],
-    address: '707 Maple Lane, Jobsville',
-    phone: '555-9900',
-    availableTime: {
-      from: '9:00 AM',
-      to: '6:00 PM'
-    }
   }
 ]
 
@@ -215,7 +119,7 @@ const DraggableRow = ({
 }
 
 export function DataTable() {
-  const [lawyersData, setLawyersData] = React.useState(data)
+  const [lawyersData, setLawyersData] = React.useState<Lawyers[]>(data)
   const [sorting, setSorting] = React.useState<SortingState>([])
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
@@ -226,13 +130,22 @@ export function DataTable() {
   const [globalFilter, setGlobalFilter] = React.useState('')
   const [bookingModal, setBookingModal] = React.useState<number | null>(null)
 
+  React.useEffect(() => {
+    const getLawyers = async () => {
+      const fetchLawyers = await fetch('http://localhost:3001/lawyers')
+      const response = await fetchLawyers.json()
+      setLawyersData(response)
+    }
+    getLawyers()
+  }, [])
+
   const reorderRow = (draggedRowIndex: number, targetRowIndex: number) => {
-    lawyersData.splice(
+    lawyersData?.splice(
       targetRowIndex,
       0,
-      lawyersData.splice(draggedRowIndex, 1)[0] as Lawyers
+      lawyersData?.splice(draggedRowIndex, 1)[0] as Lawyers
     )
-    setLawyersData([...lawyersData])
+    setLawyersData([...(lawyersData ?? [])])
   }
 
   const columns: ColumnDef<Lawyers>[] = [
@@ -319,7 +232,7 @@ export function DataTable() {
   ]
 
   const table = useReactTable({
-    data: lawyersData,
+    data: lawyersData || [],
     columns,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
@@ -425,7 +338,7 @@ export function DataTable() {
         {bookingModal != null && (
           <Dialog open={true} onOpenChange={() => setBookingModal(null)}>
             <AppoinmentModal
-              lawyer={data.find((each) => {
+              lawyer={lawyersData?.find((each) => {
                 return each.id === bookingModal
               })}
             />
